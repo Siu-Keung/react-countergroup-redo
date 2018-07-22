@@ -4,27 +4,22 @@ import React, {Component} from 'react';
 class Counter extends Component{
     constructor(props){
         super(props);
-        this.state = {count: props.count};
     }
 
-    onAddButtonClicked = () => {
-        let newState = this.state;
-        newState.count++;
-        this.setState(newState);
+    onAddButtonClicked = (index) => {
+        this.props.onCounterAddButtonClicked(index);
     }
 
-    onSubButtonClicked = () => {
-        let newState = this.state;
-        newState.count--;
-        this.setState(newState);
+    onSubButtonClicked = (index) => {
+        this.props.onCounterSubButtonClicked(index);
     }
 
     render(){
         let resultElem = (
             <div>
-                <button onClick={this.onAddButtonClicked}>+</button>
-                <span>{this.state.count}</span>
-                <button onClick={this.onSubButtonClicked}>-</button>
+                <button onClick={this.onAddButtonClicked.bind(this, this.props.index)}>+</button>
+                <span>{this.props.count}</span>
+                <button onClick={this.onSubButtonClicked.bind(this, this.props.index)}>-</button>
             </div>
         );
         return resultElem;
